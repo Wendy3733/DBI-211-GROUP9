@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Food Webpage</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Richelle">
+    <meta name="description" content="RAW Foodies category">
+    <meta name="keywords" content="RAW, foodie, food, recipe, delicacies">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--flexible view for any device-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="scripts.js" defer></script>
+    <!--defer attribute makes the script load in the background and execute after the document has been completely parsed (so we can place the script in <head> instead of very bottom before </body>)-->
+    <style>
+        article {
+            margin: 0 40px 60px 40px;
+        }
+
+        article h1 {
+            font-size: 2em;
+            font-variant: small-caps;
+            text-align: center;
+            color: #1F2F21;
+        }
+
+        .cat-list {
+            background-color: #E2E5D0;
+            border: 3px dashed #667C68;
+            border-radius: 2.5%;
+            margin-bottom: 2.5%;
+        }
+
+        .cat-category li a {
+            text-decoration: none;
+            color: #3A553D;
+        }
+
+        .list-cont {
+            padding: 1% 1.5% 2% 1.5%;
+            overflow: auto;
+            max-height: 300px;
+        }
+
+        .list-cont h2 {
+            font-variant: small-caps;
+        }
+
+        .list-cont ul li {
+            list-style-type: numeric;
+            padding: 3px;
+        }
+        
+        .cat-category h2 a {
+            color: #1F2F21;
+        }
+
+        .cat-category li a:hover {
+            color: #7760ca;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!--logo-->
+        <table class="header">
+            <tr> <!--logo-->
+                <td rowspan="2" class="logo"><a href="index.html"><img src="images/logo.jpeg" alt="Logo"></a></td>
+                    
+                <td class="h-mid-col"> <!--motto-->
+                    <div class="motto">Welcome to <strong>RAW Foodies</strong>! Ready to start your journey of exploring delicious food?</div>
+                </td>
+
+                <td class="search-bar"> <!--search bar--> <!--referenced from Copilot-->
+                    <div class="search-container"> 
+                        <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchFunction()">  <!--onkeyup event to trigger the search function-->
+                        <ul id="resultList"></ul> 
+                    </div>
+                </td> 
+            </tr>                         
+
+            <!--menu bar-->
+            <tr class="menu">
+                <td colspan="2" class="h-mid-col">
+                    <nav> 
+                        <ul class="navbar">
+                            <li class="dropdown"> <!--referenced from w3school-->
+                                <div class="drop-container">
+                                    <a href="#" class="dropbtn" onclick="getRandomRecipe(event)">Recipes</a>
+                                    <div class="dropdown-content"> <!--dropdown contents-->
+                                        <a href="meatball_spaghetti.html" target="_blank">Spaghetti and Meatballs</a>
+                                        <a href="shrimp_salad.html" target="_blank">Shrimp Salad</a> 
+                                        <a href="poached_salmon.html" target="_blank">Poach Salmon</a>
+                                        <a href="blueberry_pancake.html" target="_blank">Blueberry Pancakes</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="category.html" target="_blank">Categories</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="feedback.html">Feedback</a></li>
+                            <!-- <li><a href="">Login/Register</a></li> -->
+                        </ul>
+                    </nav>
+                </td>
+                <td></td>
+            </tr>
+            
+        </table>
+
+        <!--breadcrumbs-->
+        <div class="breadcrumbs">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="category.html">Category</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <article>
+
+        <h1>Category</h1>
+        <ul class="cat-category">
+            <li class="cat-list">
+                <div class="list-cont">
+                    <h2 id="western"><a href="#" onclick="getRandomRecipeByCategory(event, 'western')">Western</a></h2>
+                    <ul>
+                        <li><a href="meatball_spaghetti.html">Spaghetti and Meatballs</a></li>
+                        <li><a href="shrimp_salad.html">Shrimp Salad</a></li>
+                        <li><a href="poached_salmon.html">Poached Salmon</a></li>
+                        <li><a href="blueberry_pancake.html">Blueberry Pancake</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="cat-list">
+                <div class="list-cont">
+                    <h2 id="noodle"><a href="#" onclick="getRandomRecipeByCategory(event, 'noodle')">Noodle</a></h2>
+                    <ul>
+                        <li><a href="meatball_spaghetti.html">Spaghetti and Meatballs</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="cat-list">
+                <div class="list-cont">
+                    <h2 id="dessert"><a href="#" onclick="getRandomRecipeByCategory(event, 'dessert')">Dessert</a></h2>
+                    <ul>
+                        <li><a href="blueberry_pancake.html">Blueberry Pancake</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        
+    </article>
+
+    <footer>
+        <table class="footer-div">
+            <tr>
+                <td class="connect"> <!--footer 1/3-->
+                    <a href="index.html"><img src="images/logo.jpeg" alt="logo"></a> <!--logo-->
+                    
+                    <!--social media icons-->
+                    <div class="social-media-icons">
+                        <span class="dot">
+                            <a href="https://www.instagram.com/ming0v0624/profilecard/?igsh=MTVoYjlsdndkcWh5Ng==" target="_blank">
+                                <img src="images/instagram.jpg" alt="Instagram"></a></span>
+                        <span class="dot">
+                            <a href="https://pin.it/4yFgOKlJK" target="_blank">
+                                <img src="images/pinterest.jpg" alt="Pinterest"></a></span>
+                        <span class="dot">
+                            <a href="https://www.facebook.com/share/1DShhLH5JE/" target="_blank">
+                                <img src="images/facebook.jpg" alt="Facebook"></a></span>
+                        <span class="dot">
+                            <a href="https://x.com/Ming_000624?t=jx_6qlhESwl4aGLwOfaoFA&s=09" target="_blank">
+                                <img src="images/x.jpg" alt="X"></a></span>
+                    </div> 
+
+                    <p><strong>connect with us!</strong></p>
+                </td> <!--footer 1/3-->
+
+                <td> <!--footer 2/3-->
+                    <div class="sub-nav"><!--sub nav menu-->
+                        <div class="sub-menu">
+                            <p><span class="small-caps">Navigation</span></p> <!--nav links-->
+                            <p>For you: </p>
+                            <ul>
+                                <li><a href="#" onclick="getRandomRecipe(event)">Recipes</a></li>
+                                <li><a href="category.html" target="_blank">Categories</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <!-- <li><a href="">Login / Register</a></li> -->
+                                <li><a href="feedback.html">Feedback</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="most-like"> <!--most liked page-->
+                            <p><span class="small-caps">Visitor's Favourite</span></p>
+                            <p>You might be interested: </p>
+                            <ul>
+                                <li><a href="meatball_spaghetti.html" target="_blank">Spaghetti and Meatballs</a></li>
+                                <li><a href="shrimp_salad.html" target="_blank">Shrimp Salad</a></li>
+                                <li><a href="poached_salmon.html" target="_blank">Poach Salmon</a></li>
+                                <li><a href="blueberry_pancake.html" target="_blank">Blueberry Pancakes</a></li>
+                            </ul>
+                        </div>
+                    </div> <!--sub-nav-->
+                </td> <!--footer 2/3-->
+           
+            </tr>
+        </table> <!--footer div-->
+
+        <address class="asgm-info">&copy;<a href="about.html"> Group 9</a> | <span class="update">Last updated: </span>22/11/2024 </address>
+    </footer>
+
+    <p class="asgm-info"><em>Disclaimer: This website is created for education and non-commercial use only. It is an assignment for completion of unit, DBI211 Fundamentals of Web Technology based on the Foundation (IT/Multimedia) course from Swinburne University of Technology Sarawak Campus.</em></p>
+
+</body>
+</html>

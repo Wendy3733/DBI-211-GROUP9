@@ -1,0 +1,960 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #E5DDC9;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    line-height: 1.6;
+}
+
+/*search bar*/ /*stripped from Copilot*/
+.search-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+#searchInput {
+    width: 93%;
+    padding: 10px;
+    font-size: 16px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#resultList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: white;
+    z-index: 2;
+    width: 265px;
+}
+
+#resultList li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 2px auto;
+    color: #526743;
+    cursor: pointer;
+}
+
+
+/*header*/
+.header {
+    /* border: 1px solid black; */
+    width: 100%;
+    background-color: #CDC3AD;
+}
+.logo {
+    width: 300px;
+}
+.logo img {
+    width: 200px;
+}
+.motto {
+    text-align: center;
+    padding: 3px 0;
+    color: #1F2F21;
+    font-size: 20px;
+    font-style: italic;
+}
+.search-bar {
+    width: 20%;
+}
+.h-mid-col {
+    width: 65%;
+}
+
+/*nav menu*/
+.menu {
+    padding: 10px;
+    background-color: #939e7a;
+}
+.menu ul li {
+    margin: 0 5%;
+    list-style-type: none;
+    display: inline;
+}
+.menu ul li a:hover {
+    color: rgba(255, 255, 255, 0.753);
+    transition: 0.2s;
+}
+.menu a {
+    text-decoration: none;
+    color: #1b3e2d;
+}
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    float: right;
+}
+.navbar li{
+    width: 200px;
+}
+.navbar li a{
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*drop down menu*/
+.dropdown {
+    position: relative;
+    display: block;
+}
+.dropdown-content { 
+    display: none; 
+    position: absolute; /*Positioned relative to the dropdown container so it doesn't affect the table cell*/
+    background-color: #7f8f72; 
+    min-width: 210px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 2; /*ensure it's on top of other elements*/
+}
+.dropdown-content a {
+    color: #1b3e2d;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover { 
+    color: rgb(163, 155, 199); 
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*breadcrumbs*/
+.breadcrumbs {
+    /* background-color: rgb(240, 156, 126); */
+    margin: -0.5% 0;
+    margin-left: -2.5%;
+    margin-top: 20px;
+    height: 60px;
+}
+.breadcrumbs nav ul li {
+    list-style-type: none;
+    display: inline;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 3%;
+}
+.breadcrumbs nav ul li a {
+    color: rgb(37, 29, 29);
+    text-decoration: none;
+}
+/*reference: https://blog.hubspot.com/marketing/navigation-breadcrumbs#:~:text=Breadcrumb%20Navigation%20in%20HTML%20and%20CSS&text=The%20easiest%20way%20to%20do,HTML */
+.breadcrumbs li+li:before { /* li+li meaning selector li immediately after li (sibling selector)(basically means all li) */
+    content: ">"; /* :before is a pseudo-element (keyword added to a selector that lets you style a specific part of the selected element) that inserts content before the selected element's content */
+    padding: 10px; /* content property here inserts whatever content slotted in before the selected element (content property is used with the ::before and ::after pseudo-elements, to insert generated content) */
+}
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+.breadcrumbs a:visited {
+    color: rgb(20, 93, 97);
+}
+
+/*homepage upper page arrangement*/
+.upper-page {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*homepage big image*/
+.sticky-container {
+    display: flex;
+    height: 1400px; /*beyond this height = no longer sticky, because this is the div that contains the img */
+    align-items: center;
+    width: 70vw;
+}
+.sticky-img { /*cacat, sticky effect gone dy but it's fine*/
+    position: sticky;
+    text-align: left;
+    width: 1050px;
+    height: 1400px;
+    top: 0;/*  the value before img becomes sticky */
+}
+.sticky-content {
+    position: absolute;
+    padding: 30px;
+    background-color: #ecdcc8;
+    z-index: 1;
+    width: 40%;
+    height: 250px;
+    overflow: auto;
+    margin-left: 10%;
+    opacity: 0.8;
+    border-radius: 15px;
+}
+
+/*right side of homepage upper page*/
+.right {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+}
+
+
+/*Homepage's recommendation of the day*/ /*referenced from Copilot*/
+.recomm-heading {
+    text-align: center;
+    font-variant: small-caps;
+    color: rgb(52, 60, 46);
+}
+.recomm { /*recommendation's container*/
+    position: relative;
+    max-width: 1000px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+/*recommendation's content*/
+.slides {
+    display: none;
+}
+.slides img {
+    width: 350px;
+    height: 400px;
+    object-fit: cover; /*cover entire container*/
+    object-position: center; /*center img within container*/
+    display: block; 
+}
+/* Apply the fade animation to elements with the .fade class */
+.fade {
+    animation-name: fade;
+    animation-duration: 2.5s;
+}
+/* Define keyframes for the fade effect */
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.slides h4 {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*prev/next image holder in homepage*/ /*referenced from Copilot*/
+.img-holder-heading {
+    margin-top: 15%;
+    text-align: center;
+    font-variant: small-caps;
+    color: rgb(52, 60, 46);
+}
+.img-holder {
+    display: flex; /* enables the flexbox layout mode, allowing you to manipulate elements' alignment, spacing, and order within a container */
+    /*align in row*/
+    overflow: visible;
+    position: relative;
+    margin: 20px auto;
+    background-color: #444;
+    border: 1px solid black;
+}
+.img-box { /*img container*/
+    display: none;
+    background-color: peru;
+}
+.img-box.active { /*shows currently active item*/
+    display: block;
+}
+.img-box img {
+    width: 350px;
+    height: 400px;
+    object-fit: cover; /*cover entire container*/
+    object-position: center; /*center img within container*/
+    display: block; 
+}
+/*text box*/
+.img-desc { 
+    margin-top: 15px;
+    position: absolute;
+    background-color: #E2E5D0;
+    right: 30px;
+    left: 30px;
+    text-align: center;
+    max-height: 150px;
+    overflow: auto;
+    border: 1px solid black;
+}
+.img-desc h4 {
+    margin-top: -.1px;
+    padding: 10px 0;
+    font-variant: small-caps;
+    text-decoration: underline;
+    font-size: 1.5em;
+    color: #42573e;;
+}
+.img-desc p {
+    margin-top: -8px;
+    color: #57493e;;
+}
+.img-holder button:hover {
+    opacity: .7;
+    transition-delay: .15s;
+}
+/*img holder's button*/
+.prev, .next {
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); /*transformation to move vertically*/
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white; 
+    border: none; 
+    padding: 10px; 
+    cursor: pointer;
+}
+.prev {
+    left: 10px;
+}
+.next {
+    right: 10px;
+}
+
+
+/*homepage mid page alignment*/
+.mid-page {
+    margin-top: 3%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+/*mid page content*/
+.content-container {
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 15%;
+    margin-bottom: 0;
+    padding-top: 3%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 5%;
+    background-color: #CDC3AD;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(211, 201, 179, 0.8);
+}
+.panel {
+    text-align: center;
+    width: 60%;
+}
+.panel h2{
+    font-size: 25px;
+    padding-bottom: 10px;
+    margin-left: -20%;
+}
+.panel-content {
+    width: 50vw;
+    display: flex;
+    min-width: 700px;
+    height: auto;
+    justify-content: space-around;
+    background-color: whitesmoke;
+    overflow: hidden;
+    margin: 2% 0;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 15px;
+}
+.content-img {
+    width: 45%;
+    padding: 12px;
+    border-radius: 50px;
+}
+.content-title a {
+    font-variant: small-caps;
+    font-size: 1.2em;
+    color: rgb(37, 29, 29);
+}
+.content-title a:hover {
+    color: #707e4e;
+}
+.content-text {
+    overflow: auto;
+}
+.content {
+    text-align: left;
+}
+.read-more {
+    font-size: large;
+    background-color: whitesmoke;
+    border: 1px solid wheat;
+    width: 70%;
+    margin: 0 40%;
+    padding: 10px 20px;
+    margin-bottom: 50px;
+}
+.read-more a {
+    text-decoration: none;
+    color: rgb(53, 87, 61);
+    font-weight: bold;
+}
+.read-more a:hover {
+    color: #99a778;
+}
+
+/*homepage category*/
+.cat-container {
+    margin: 0 auto;
+}
+.cat-container h2 {
+    text-align: center;
+}
+.cat-container h2 a {
+    text-decoration: none;
+    font-variant: small-caps;
+    font-size: 1.5em;
+    color: rgb(37, 29, 29);
+}
+.category {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    text-align: center;
+    height: auto;
+}
+.cat-frame {
+    width: 250px;
+    height: 260px;
+}
+.cat-img {
+    width: 100%;
+    height: 90%;
+    border-radius: 100%;
+    object-fit: cover; /*crop image to fit the dimension*/
+    object-position: center; /* Center the image within the container, but seems like it's useless here */
+    border: 2px solid black;
+}
+.cat-title {
+    font-size: 1.2em;
+    margin-top: -10px;
+    font-weight: bold;
+}
+.cat-title a:hover {
+    color: #707e4e;
+}
+
+
+/*homepage's like and share button*/
+.sticky-button {
+    position: sticky; 
+    bottom: 10%;
+    width: 50px;
+    height: 120px;
+}
+.button img {
+    border-radius: 100%;
+    border: 1px solid black;
+    display: block;
+    margin: 30% 0;
+    width: 50px;
+    height: auto;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0.5;
+}
+.sticky-button p {
+    margin-top: -10px;
+    margin-left: 21px;
+    margin-bottom: -4px;
+}
+.button:hover img, button:focus img {
+    opacity: 1;
+}
+
+/* footer */
+.footer-div {
+    width: 100%;
+    background-color: #CDC3AD;
+    padding: 5px;
+}
+
+.connect {
+    margin: auto;
+    text-align: center;
+    width: 250px;
+}
+.connect p {
+    margin-top: -1px;
+}
+
+/*footer logo*/
+.connect img {
+    width: 150px;
+}
+
+/*social media button*/
+.dot img{
+    margin-right: 2px;
+    width: 30px;
+    border-radius: 100%;
+}
+
+/*sub nav*/
+.sub-nav {
+    display: flex;
+    justify-content: space-around;
+    width: 80vw;
+    height: 100%;
+}
+.sub-menu{
+    width: 20%;
+}
+.sub-nav ul li {
+    list-style-type: none;
+    padding-bottom: 5px;
+}
+.sub-nav ul {
+    margin-block-start: 5px;
+    padding-inline-start: 15px;
+}
+.sub-nav a {
+
+    font-size: 20px;
+    color: rgb(57, 97, 118);
+}
+.sub-nav a:hover {
+    color: #83945d;
+}
+.sub-nav p {
+    margin: -.2px 0;
+    font-size: 20px;
+}
+.small-caps {
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/*feedback (omitted)
+
+.feedback {
+    background-color: palevioletred;
+    margin: 20px;
+    padding: 20px;
+}
+form {
+    margin: 15px 0;
+}
+input[type="radio"] { 
+    margin-right: 10px; 
+}
+.submitbtn {
+    margin-top: 6px;
+}*/
+
+/*footer info*/
+.update {
+    font-style: normal;
+}
+
+/*assignment info*/
+.asgm-info {
+    margin: 5px;
+}
+
+/*Recipe splashpage css */
+.s_figure{
+    text-align: center;
+    max-width: 100%;
+    width: 1200px;
+}
+.s_img{
+    border-radius: 20%;
+    width:min-content;
+    max-width: 40%;
+    height: auto;
+}
+video {
+    position: fixed;
+    bottom: 0px; /* Position it near the bottom of the viewport */
+    right: 20px; /* Position it near the right of the viewport */
+    width: 350px; /* Set a fixed width for the video */
+    z-index: 1000; /* Ensures it stays on top of other elements */
+    border-radius: 5px;
+    padding: 5px;
+}
+/*each individual div's container in recipe page*/
+.container {
+    max-width: 1020px;
+    padding: 20px;
+}
+.recipe-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.recipe-card h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #cc3333;
+    text-align: center;
+}
+
+.recipe-card h2,
+.recipe-card h3,
+.recipe-card h4 {
+    color: #333;
+    margin: 15px 0 5px;
+}
+
+.recipe-card p {
+    margin-bottom: 15px;
+}
+
+/*Recipe's Image Styling */
+.recipe img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.recipe-info h2{
+    color:#b79642;
+}
+
+.recipe-info h3{
+    color:#a2770a;
+}
+
+/*Recipe's Ingredients List */
+.ingredients {
+    padding-left: 15px;
+}
+
+.ingredients li {
+    margin-bottom: 8px;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.title {
+    color: #e74c3c;
+}
+/*recipe's numbering css*/
+.number {
+    background-color: #b79642;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.container2{
+    max-width: 450px;
+    margin-bottom: 4000px;
+    padding: 20px;
+    float: right; 
+    padding: 20px;
+    position: absolute; 
+    top: 285px;            /* Aligns to the top */
+    right: 0;          /* Aligns to the right */
+    padding: 20px;
+}
+/*Recipe's author info css*/
+.author{
+    padding: 20px;
+    background-color: #f0f0f0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;   
+    position: relative;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.author-tips{
+    float: right;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 410px;
+    border-radius: 8px;
+    padding: 20px;
+    position: absolute; 
+    top: 510px;            /* Aligns to the top */
+    right: 19px;          /* Aligns to the right */
+    padding: 20px;
+    overflow: auto;
+}
+
+.container3 h3{
+    color:#be9b44;
+    font-size:1.5em;
+}
+.nutrition{
+    max-width: 410px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: absolute; /* Allows precise placement */
+    top: 1010.76px;            /* Aligns to the top */
+    right: 20px;          /* Aligns to the right */
+    padding: 20px;
+}
+
+.container4 h3{
+    color:#be9b44;
+}
+
+.container5{
+    width:450px;
+    padding: 20px;
+    position: absolute; /* Allows precise placement */
+    top: 1200.31px;            /* Aligns to the top */
+    right: 0;          /* Aligns to the right */
+    padding: 20px;
+}
+
+.rating {
+    display: flex;
+    color: #ff6b6b;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px; /* Allows precise placement */
+    top: 1450.31px;            /* Aligns to the top */
+    right: 0;          /* Aligns to the right */
+}
+
+.rating-stars {
+    color: #ffa500;/* Allows precise placement */
+    top: 0;            /* Aligns to the top */
+    right: 0;          /* Aligns to the right */
+}
+
+/*previous and next on recipe page bottom*/
+.pre{
+    padding-left: 25%;
+    
+}
+
+.previousP{
+    text-align: center;
+    font-size: 18px;
+    width: 180px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: #6d835e;
+    cursor: pointer;
+}
+
+
+/* about css */
+.a_article{ /*content*/
+    align-items: center;
+    margin-left: 25%;
+}
+.profile{
+    background-color: #ffffff;
+    position: relative;
+    margin-bottom: 50px;
+    transition-duration: 500ms;
+    z-index: 1;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(47, 91, 234, 0.125);
+    width: 60%;
+}
+.profile .Pic{
+    position: relative;
+    z-index: 1;
+    border-radius: 15px 15px 0 0;
+    margin: 0 auto;
+    padding: 30px 30px 0 30px;
+    background-color: #3f43fd;
+    overflow: hidden;
+}
+.profile img{
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+}
+.profile .Pic::after{ /* adding a retengle at the right of the profile box */
+    transition-duration: 500ms;
+    position: absolute;
+    width: 150%;
+    height: 100px;
+    bottom: -100px;
+    left: -25%;
+    content: "";
+    background-color: #ffffff;
+    transform: rotate(-15deg);
+}
+.profile .socialMedia{ 
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    bottom: 0;
+    right: 30px;
+    text-align: right;
+}
+.profile .socialMedia a{
+    font-size: 14px;
+    color: #020710;
+    padding: 0 5px;
+}
+.profile .socialMedia a:hover, .profile .socialMedia a:focus{ /* color change after the sosial media is click */
+    color: rgb(137, 226, 232);
+}
+.profile .d{
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+    text-align: right;
+    transition-duration: 500ms;
+    border-radius: 0 0 15px 15px;
+    border-color: #ffffff;
+}
+.profile .d::after{ /* a line after the social media logo */
+    position: absolute;
+    transition-duration: 500ms;
+    z-index: 1;
+    width: 50px;
+    height: 3px;
+    background-color: #3f43fd;
+    content: "";
+    top: 12px;
+    right: 30px;
+}
+.profile h4{
+    margin-bottom: 0.25rem;
+    transition-duration: 500ms;
+    font-size: 16px;
+}
+.profile p{
+    transition-duration: 500ms;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+.profile:hover .Pic::after, .profile:focus .Pic::after{/* colour change after mouse is at the box */
+    background-color: #070a57;
+}
+.profile:hover .d, .profile:focus .d{/* colour change after mouse is at the box */
+    background-color: #070a57;
+}
+.profile:hover .socialMedia a, .profile:focus .socialMedia a{/* colour change after mouse is at the box */
+    color: white;
+}
+.profile:hover .d::after, .profile:focus .d::after{/* colour change after mouse is at the box */
+    background-color: white;
+}
+.profile:hover .d h4, .profile:focus .d h4{/* colour change after mouse is at the box */
+    color: white;
+}
+.profile:hover .d p, .profile:focus .d p{/* colour change after mouse is at the box */
+    color: white;
+}
+
+/*return to last visited page (in feedback/about page)*/
+.return_button{
+    text-align: center;
+    font-size: 18px;
+    width: 180px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    color: #6d835e;
+    cursor: pointer;
+}
+
+
+
+/* feedback css */
+.f_body{
+    font-family: sans-serif;
+}
+.formbox{ /*form contained in td*/
+    background-color: #fff;
+    padding: 2%;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(211, 201, 179, 0.8);
+    margin-bottom: 50px;
+    width: 70vw;
+    margin: 0 auto;
+} 
+/*form alignment*/
+.form-space {
+    width: 15vw;
+}
+/*form spacing*/
+.fb-form td {
+    padding: 4px 0;
+}
+/*form*/
+.fb-struct {
+    background-color: white;
+    width: 100%;
+}
+/*fieldset*/
+fieldset{
+    border: 0;
+    margin-top: 2%;
+}
+fieldset legend{
+    font-variant-caps: all-petite-caps;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 2%;
+    text-align: center;
+}
+/*form's radio button*/
+.r{
+    display: flex;
+}
+/*form's checkbox button*/
+.c{
+    display: flex;
+    margin: 0 6%;
+}
+/*feedback form's input css*/
+input[type="radio"]{
+    margin-left: 60px;
+}
+input .c label {
+    margin-left: 60px;
+}
+input, textarea{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+/*feedback form's submit and reset button*/
+.buttons{
+    text-align: right;
+}
+input[type="submit"],input[type="reset"]{
+    width: 100px;
+    cursor: pointer;
+}
